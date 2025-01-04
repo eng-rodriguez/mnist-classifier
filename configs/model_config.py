@@ -9,7 +9,7 @@ class ModelConfig:
     RANDOM_SEED: int = 42
     BATCH_SIZE: int = 10
     LEARNING_RATE: float = 0.001
-    EPOCHS: int = 10
+    EPOCHS: int = 5
 
     # Model architecture
     INPUT_CHANNELS: int = 1
