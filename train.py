@@ -4,6 +4,7 @@ from configs.model_config import ModelConfig
 from data.datamodule import MNISTDataModule
 from models.mnist_cnn import ConvNet
 from trainers.mnist_trainer import MNISTTrainer
+from utils.visualization import plot_metrics
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -43,6 +44,16 @@ def main():
         trainer.val_corrects.append(val_correct)
 
     torch.save(model.state_dict(), "weights/mnist_cnn.pth")
+
+    # Plot and save results
+    logger.info("Plotting and saving results...")
+    plot_metrics(
+        trainer.trn_losses,
+        trainer.trn_corrects,
+        trainer.val_losses,
+        trainer.val_corrects,
+        save_path="results/mnist_model_metrics.png",
+    )
 
 
 if __name__ == "__main__":
